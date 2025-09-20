@@ -206,16 +206,300 @@ const CollaboratorDashboard = () => {
           </TabsContent>
 
           <TabsContent value="events">
-            <div className="text-center py-12">
-              <Calendar className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Gerenciar Eventos</h3>
-              <p className="text-muted-foreground mb-6">
-                Organize e gerencie suas coberturas fotográficas de eventos esportivos.
-              </p>
-              <Button variant="accent">
-                <Plus className="w-4 h-4 mr-2" />
-                Criar Novo Evento
-              </Button>
+            <div className="space-y-6">
+              {/* Header */}
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold">Eventos Disponíveis</h2>
+              </div>
+
+              {/* Filters */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Filtre por aqui</h3>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <Button variant="default" size="sm" className="bg-black text-white hover:bg-black/90">
+                    Todas
+                  </Button>
+                  <Button variant="outline" size="sm" className="bg-yellow-400 text-black border-yellow-400 hover:bg-yellow-500">
+                    Foco Radical
+                  </Button>
+                  <Button variant="outline" size="sm" className="bg-yellow-400 text-black border-yellow-400 hover:bg-yellow-500">
+                    Fotos By
+                  </Button>
+                  <div className="flex items-center space-x-2 ml-4">
+                    <input type="checkbox" id="oficiais" className="rounded" />
+                    <label htmlFor="oficiais" className="text-sm font-medium">
+                      Somente Oficiais
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Search and Filters Row */}
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <div className="flex-1 relative">
+                  <Input 
+                    type="text" 
+                    placeholder="Pesquisar evento" 
+                    className="pl-10"
+                  />
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                    <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <select className="px-3 py-2 border rounded-md text-sm">
+                    <option>09/2025</option>
+                    <option>10/2025</option>
+                    <option>11/2025</option>
+                  </select>
+                  <select className="px-3 py-2 border rounded-md text-sm">
+                    <option>Goiás</option>
+                    <option>São Paulo</option>
+                    <option>Rio de Janeiro</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Events Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Event 1 */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="bg-muted/30">
+                    <CardTitle className="text-lg">OHANA RUNNING - POSSE GOIAS 2025</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      Corrida de Rua
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <Camera className="w-4 h-4" />
+                        Fotos
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      </svg>
+                      Posse / GO
+                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      20/09/25
+                    </div>
+                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
+                      Ver Evento
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Event 2 */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="bg-muted/30">
+                    <CardTitle className="text-lg">TREINO ALAMEDA RICARDO PARANHOS - SÁBADO 20/09/25</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                      Treinos
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <Camera className="w-4 h-4" />
+                        Fotos
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Vídeos
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      </svg>
+                      Goiânia / GO
+                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      20/09/25
+                    </div>
+                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
+                      Ver Evento
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Event 3 */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="bg-muted/30">
+                    <CardTitle className="text-lg">TREINO AVENIDA RIO VERDE SÁBADO 20/09/25</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                      Treinos
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <Camera className="w-4 h-4" />
+                        Fotos
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Vídeos
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      </svg>
+                      Aparecida de Goiânia / GO
+                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      20/09/25
+                    </div>
+                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
+                      Ver Evento
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Additional Events Row */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="bg-muted/30">
+                    <CardTitle className="text-lg">PLAY RUN 2025</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      Corrida de Rua
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <Camera className="w-4 h-4" />
+                        Fotos
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Vídeos
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      </svg>
+                      Goiânia / GO
+                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      25/09/25
+                    </div>
+                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
+                      Ver Evento
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="overflow-hidden">
+                  <CardHeader className="bg-muted/30">
+                    <CardTitle className="text-lg">2º CIRCUITO DA TRANSPARÊNCIA 2025</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      Corrida de Rua
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <Camera className="w-4 h-4" />
+                        Fotos
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Vídeos
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      </svg>
+                      Brasília / DF
+                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      28/09/25
+                    </div>
+                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
+                      Ver Evento
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="overflow-hidden">
+                  <CardHeader className="bg-muted/30">
+                    <CardTitle className="text-lg">22º CORRIDA KIDS 2025</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      Corrida de Rua
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <Camera className="w-4 h-4" />
+                        Fotos
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Vídeos
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      </svg>
+                      São Paulo / SP
+                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      30/09/25
+                    </div>
+                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
+                      Ver Evento
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </TabsContent>
 
