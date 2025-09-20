@@ -5,7 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
-import { Upload, Camera, Users, TrendingUp, Calendar, Plus, Edit, Trash2 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Upload, Camera, Users, TrendingUp, Calendar, Plus, Edit, Trash2, ExternalLink, X } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import heroPhoto from '@/assets/hero-photo.jpg';
@@ -15,6 +16,97 @@ import photo3 from '@/assets/photo-3.jpg';
 
 const CollaboratorDashboard = () => {
   const [selectedTab, setSelectedTab] = useState('overview');
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
+
+  const events = [
+    {
+      id: 1,
+      title: "OHANA RUNNING - POSSE GOIAS 2025",
+      type: "Corrida de Rua",
+      date: "20 Setembro 2025",
+      location: "Posse / GO",
+      hasPhotos: true,
+      hasVideos: false,
+      commission: {
+        official: "70% fotógrafo",
+        unofficial: "60% fotógrafo"
+      },
+      minResolution: "3450x2300",
+      launchTime: "20/09/2025 21:00",
+      athleteId: "Número e Várias Galerias",
+      registrationLimit: "(não definido)",
+      officialCoverage: "Não",
+      prices: {
+        high: "R$ 19,90",
+        medium: "R$ 16,90",
+        low: "R$ 11,90"
+      },
+      points: "100 pontos",
+      credits: "100 pontos",
+      whatsapp: "Foco Pires - PJ",
+      photographers: "0"
+    },
+    {
+      id: 2,
+      title: "TREINO ALAMEDA RICARDO PARANHOS - SÁBADO 20/09/25",
+      type: "Treinos",
+      date: "20 Setembro 2025",
+      location: "Goiânia / GO",
+      hasPhotos: true,
+      hasVideos: true,
+      commission: {
+        official: "70% fotógrafo",
+        unofficial: "60% fotógrafo"
+      },
+      minResolution: "3450x2300",
+      launchTime: "20/09/2025 19:00",
+      athleteId: "Número e Várias Galerias",
+      registrationLimit: "(não definido)",
+      officialCoverage: "Sim",
+      prices: {
+        high: "R$ 19,90",
+        medium: "R$ 16,90",
+        low: "R$ 11,90"
+      },
+      points: "100 pontos",
+      credits: "100 pontos",
+      whatsapp: "Foco Pires - PJ",
+      photographers: "2"
+    },
+    {
+      id: 3,
+      title: "TREINO AVENIDA RIO VERDE SÁBADO 20/09/25",
+      type: "Treinos",
+      date: "20 Setembro 2025",
+      location: "Aparecida de Goiânia / GO",
+      hasPhotos: true,
+      hasVideos: true,
+      commission: {
+        official: "70% fotógrafo",
+        unofficial: "60% fotógrafo"
+      },
+      minResolution: "3450x2300",
+      launchTime: "20/09/2025 18:00",
+      athleteId: "Número e Várias Galerias",
+      registrationLimit: "(não definido)",
+      officialCoverage: "Não",
+      prices: {
+        high: "R$ 19,90",
+        medium: "R$ 16,90",
+        low: "R$ 11,90"
+      },
+      points: "100 pontos",
+      credits: "100 pontos",
+      whatsapp: "Foco Pires - PJ",
+      photographers: "1"
+    }
+  ];
+
+  const openEventDialog = (event) => {
+    setSelectedEvent(event);
+    setIsEventDialogOpen(true);
+  };
 
   const stats = [
     { title: "Total de Fotos", value: "1,247", icon: Camera, change: "+12%" },
@@ -264,241 +356,54 @@ const CollaboratorDashboard = () => {
 
               {/* Events Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Event 1 */}
-                <Card className="overflow-hidden">
-                  <CardHeader className="bg-muted/30">
-                    <CardTitle className="text-lg">OHANA RUNNING - POSSE GOIAS 2025</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Corrida de Rua
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Camera className="w-4 h-4" />
-                        Fotos
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      </svg>
-                      Posse / GO
-                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      20/09/25
-                    </div>
-                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
-                      Ver Evento
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                {/* Event 2 */}
-                <Card className="overflow-hidden">
-                  <CardHeader className="bg-muted/30">
-                    <CardTitle className="text-lg">TREINO ALAMEDA RICARDO PARANHOS - SÁBADO 20/09/25</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                      Treinos
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Camera className="w-4 h-4" />
-                        Fotos
-                      </div>
-                      <div className="flex items-center gap-1">
+                {events.map((event) => (
+                  <Card key={event.id} className="overflow-hidden">
+                    <CardHeader className="bg-muted/30">
+                      <CardTitle className="text-lg">{event.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 space-y-3">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        Vídeos
+                        {event.type}
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      </svg>
-                      Goiânia / GO
-                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      20/09/25
-                    </div>
-                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
-                      Ver Evento
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                {/* Event 3 */}
-                <Card className="overflow-hidden">
-                  <CardHeader className="bg-muted/30">
-                    <CardTitle className="text-lg">TREINO AVENIDA RIO VERDE SÁBADO 20/09/25</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                      Treinos
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Camera className="w-4 h-4" />
-                        Fotos
+                      <div className="flex items-center gap-4 text-sm">
+                        {event.hasPhotos && (
+                          <div className="flex items-center gap-1">
+                            <Camera className="w-4 h-4" />
+                            Fotos
+                          </div>
+                        )}
+                        {event.hasVideos && (
+                          <div className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 002 2v8a2 2 0 002 2z" />
+                            </svg>
+                            Vídeos
+                          </div>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         </svg>
-                        Vídeos
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      </svg>
-                      Aparecida de Goiânia / GO
-                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      20/09/25
-                    </div>
-                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
-                      Ver Evento
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                {/* Additional Events Row */}
-                <Card className="overflow-hidden">
-                  <CardHeader className="bg-muted/30">
-                    <CardTitle className="text-lg">PLAY RUN 2025</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Corrida de Rua
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Camera className="w-4 h-4" />
-                        Fotos
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        {event.location}
+                        <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z" />
                         </svg>
-                        Vídeos
+                        {event.date.split(' ').slice(-1)[0]}
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      </svg>
-                      Goiânia / GO
-                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      25/09/25
-                    </div>
-                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
-                      Ver Evento
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                <Card className="overflow-hidden">
-                  <CardHeader className="bg-muted/30">
-                    <CardTitle className="text-lg">2º CIRCUITO DA TRANSPARÊNCIA 2025</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Corrida de Rua
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Camera className="w-4 h-4" />
-                        Fotos
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                        Vídeos
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      </svg>
-                      Brasília / DF
-                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      28/09/25
-                    </div>
-                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
-                      Ver Evento
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                <Card className="overflow-hidden">
-                  <CardHeader className="bg-muted/30">
-                    <CardTitle className="text-lg">22º CORRIDA KIDS 2025</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Corrida de Rua
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Camera className="w-4 h-4" />
-                        Fotos
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                        Vídeos
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      </svg>
-                      São Paulo / SP
-                      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      30/09/25
-                    </div>
-                    <Button className="w-full bg-black text-yellow-400 hover:bg-black/90">
-                      Ver Evento
-                    </Button>
-                  </CardContent>
-                </Card>
+                      <Button 
+                        className="w-full bg-black text-yellow-400 hover:bg-black/90"
+                        onClick={() => openEventDialog(event)}
+                      >
+                        Ver Evento
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </TabsContent>
@@ -514,6 +419,165 @@ const CollaboratorDashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Event Details Dialog */}
+      <Dialog open={isEventDialogOpen} onOpenChange={setIsEventDialogOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="flex flex-row items-center justify-between">
+            <DialogTitle className="text-xl font-bold text-yellow-400">
+              {selectedEvent?.title}
+            </DialogTitle>
+            <div className="flex gap-2">
+              <Button variant="outline" size="sm">
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Link Externo
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setIsEventDialogOpen(false)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+          </DialogHeader>
+          
+          {selectedEvent && (
+            <div className="space-y-6 mt-4">
+              {/* Event Info */}
+              <div className="flex items-center gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {selectedEvent.date}
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  </svg>
+                  {selectedEvent.location}
+                </div>
+              </div>
+
+              {/* Register Button */}
+              <div className="flex justify-end">
+                <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-2">
+                  Me Cadastrar
+                </Button>
+              </div>
+
+              {/* Main Info Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Left Column */}
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Comissões:</h4>
+                    <div className="bg-yellow-400 text-black p-3 rounded-lg font-medium">
+                      Oficial: {selectedEvent.commission.official}; Não Oficial: {selectedEvent.commission.unofficial}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-2">Identificação dos Atletas:</h4>
+                    <div className="bg-muted p-3 rounded-lg">
+                      {selectedEvent.athleteId}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-2">Preços de venda</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 bg-muted p-2 rounded">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                        </svg>
+                        <span className="text-sm">Alta: {selectedEvent.prices.high}</span>
+                      </div>
+                      <div className="flex items-center gap-2 bg-muted p-2 rounded">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span className="text-sm">Média: {selectedEvent.prices.medium}</span>
+                      </div>
+                      <div className="flex items-center gap-2 bg-muted p-2 rounded">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                        <span className="text-sm">Baixa: {selectedEvent.prices.low}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="font-semibold mb-2">Pontos:</h4>
+                      <div className="bg-muted p-3 rounded-lg text-center">
+                        {selectedEvent.points}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Créditos:</h4>
+                      <div className="bg-muted p-3 rounded-lg text-center">
+                        {selectedEvent.credits}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Middle Column */}
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Mínima resolução de upload:</h4>
+                    <div className="bg-muted p-3 rounded-lg">
+                      {selectedEvent.minResolution}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-2">Data limite para Registro:</h4>
+                    <div className="bg-muted p-3 rounded-lg">
+                      {selectedEvent.registrationLimit}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-2">Whatsapp</h4>
+                    <div className="bg-muted p-3 rounded-lg">
+                      <span>{selectedEvent.whatsapp}</span>
+                      <span className="ml-2 text-blue-600 text-sm">Tel: 61985332204</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-2">Fotógrafos:</h4>
+                    <div className="bg-muted p-3 rounded-lg">
+                      {selectedEvent.photographers}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Lançamento:</h4>
+                    <div className="bg-muted p-3 rounded-lg">
+                      {selectedEvent.launchTime}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-2">Cobertura Oficial:</h4>
+                    <div className="bg-muted p-3 rounded-lg">
+                      {selectedEvent.officialCoverage}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
